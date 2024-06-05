@@ -7,8 +7,11 @@
 + modulo para ejecutar fastapi (uvicorn): pip install uvicorn
 
 + IMPORTACIONES:
-from fastapi import FastAPI, Body (el body es para los post)
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Body, Path, Query (el body es para los post, el Path es para validar parámetros de ruta, Query es para validar parametros Query)
+from fastapi.responses import HTMLResponse, JSONResponse (el jsonresponse es para enviar contenido en formato json al cliente)
+from pydantic import BaseModel, Field (BaseModel es para crear esquemas de clases. Field es para las validaciones de atributos)
+from typing import Optional (para poner que un atributo puede ser opcional y el tipo del atributo que es opcional, como int o str)
+
 
 
 + iniciar y recargar automaticamete cada vez que hay un cambio, y seleccionar el puerto: uvicorn main:app --reload --port 5000
@@ -19,3 +22,17 @@ todos los dispositivos de la red : uvicorn main:app --reload --port 5000 --host 
 + importar para enviar html: from fastapi.responses import HTMLResponse
 
 NOTA: Cuando vamos a añadir un parámetro Query a la ruta, ponemos '/' al final
+
+
+
+
+
+
++ github:
+echo "# FastAPI_Movies" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/MATC10/FastAPI_Movies.git
+git push -u origin main
