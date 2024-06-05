@@ -1,0 +1,21 @@
++ crear entorno: python -m venv mientorno
++ activar entorno:
+-windows:  mientorno/Scripts/activate
+-linux:    source mientorno/bin/activate
+
++ instalar fastapi: pip install fastapi
++ modulo para ejecutar fastapi (uvicorn): pip install uvicorn
+
++ IMPORTACIONES:
+from fastapi import FastAPI, Body (el body es para los post)
+from fastapi.responses import HTMLResponse
+
+
++ iniciar y recargar automaticamete cada vez que hay un cambio, y seleccionar el puerto: uvicorn main:app --reload --port 5000
++ iniciar y recargar automaticamete cada vez que hay un cambio: uvicorn main:app --reload
++ ejecutar el main sin el reload: uvicorn main:app
++ iniciar y recargar automaticamete cada vez que hay un cambio, y seleccionar el puerto, y que esté disponoble para
+todos los dispositivos de la red : uvicorn main:app --reload --port 5000 --host 0.0.0.0
++ importar para enviar html: from fastapi.responses import HTMLResponse
+
+NOTA: Cuando vamos a añadir un parámetro Query a la ruta, ponemos '/' al final
