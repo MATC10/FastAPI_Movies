@@ -1,3 +1,5 @@
+SEGUIR VIENDO: https://www.youtube.com/watch?v=-NMH8rvVS5I&ab_channel=SamuelHenao
+
 + crear entorno: python -m venv mientorno
 + activar entorno:
 -windows:  mientorno/Scripts/activate
@@ -5,10 +7,16 @@
 
 + instalar fastapi: pip install fastapi
 + modulo para ejecutar fastapi (uvicorn): pip install uvicorn
++ instalar PyJWT para el token y el login: pip install PyJWT
++ guardar datos sensibles en las variables de entorno: pip install python-dotenv
++ para el orm de la bbdd: pip install sqlalchemy
 
-+ IMPORTACIONES:
-from fastapi import FastAPI, Body (el body es para los post)
-from fastapi.responses import HTMLResponse
++ IMPORTACIONES EN MAIN:
+from fastapi import FastAPI, Body, Path, Query, status (el body es para los post, el Path es para validar parámetros de ruta, Query es para validar parametros Query. status: indicar el status de forma más legible)
+from fastapi.responses import HTMLResponse, JSONResponse (el jsonresponse es para enviar contenido en formato json al cliente)
+from pydantic import BaseModel, Field (BaseModel es para crear esquemas de clases. Field es para las validaciones de atributos)
+from typing import Optional, List (Optional: para poner que un atributo puede ser opcional y el tipo del atributo que es opcional, como int o str. List: para indicar en el parámetro que vamos a recibir una lista como respuesta)
+
 
 
 + iniciar y recargar automaticamete cada vez que hay un cambio, y seleccionar el puerto: uvicorn main:app --reload --port 5000
@@ -18,4 +26,31 @@ from fastapi.responses import HTMLResponse
 todos los dispositivos de la red : uvicorn main:app --reload --port 5000 --host 0.0.0.0
 + importar para enviar html: from fastapi.responses import HTMLResponse
 
-NOTA: Cuando vamos a añadir un parámetro Query a la ruta, ponemos '/' al final
++ NOTA: Cuando vamos a añadir un parámetro Query a la ruta, ponemos '/' al final
+
+
+
++ NOTA2: MIRAR ESTO PARA MANDAR EXCEPCIONES DE FORMA AUTOMÁTICA (podemos poner también el otro status):  
+raise HTTPException(status_code=404, detail="Movie not found") 
+
+
++ NOTA3: SQLModel es una libreria que se basa en pydantic y sqlalchemy para evitar estar creando esquemas de modelos por separado
+
++ NOTA4: PARA EL AUTOCOMPLETADO. Selecciona el intérprete de Python: En Visual Studio Code, presiona CTRL+SHIFT+P y selecciona “Python: Select Interpreter”. Elige el intérprete de Python correspondiente al entorno virtual de tu proyecto
+(opcional, creo que da igual: Haz clic en el botón “Run and Debug” en la barra lateral izquierda.
+Selecciona “Create a launch.json file”.
+Elige “FastAPI” como tipo de archivo de configuración
+)
+
++ NOTA5: Exportar todos los módulos requeridos de nuestro proyecto para instalarlos. Estando en el entorno virtual ponemos en la terminal: pip freeze > requirements.txt
+
+
+
++ github:
+echo "# FastAPI_Movies" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/MATC10/FastAPI_Movies.git
+git push -u origin main
