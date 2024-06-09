@@ -52,12 +52,22 @@ def put_movie(id:int, movie:Movie) -> dict:
         
     return JSONResponse(status_code=200, content={'message': 'Se ha modificado la película'})
 
+@router.patch('/movies/{id}', tags=['movies'], response_model=dict, status_code=200)
+def patch_movie(id:int, movie:Movie) -> dict:
+    db = Session()
+    result = MovieService(db).get_movie(id)
+    if not result:
+        return JSONResponse(status_code=404, content={'message':'No encontrado'})
+    MovieService(db).patch_movie(id, movie)
+    return JSONResponse(status_code=200, content={'message': 'Se ha modificado la película'})
+    
+
 @router.delete('/movies/{id}', tags=['movies'], response_model=dict, status_code=200)
 def delete_movie(id:int) -> dict:
     db = Session()
-    result = MovieService.get_movie(id)
+    result = MovieService(db).get_movie(id)
     if not result:
         return JSONResponse(status_code=404, content={'message':'No encontrado'})
-    MovieService.delete_movie(id)
-    db.commit()
+    MovieService(db).delete_movie(id)
     return JSONResponse(status_code=200, content={'message': 'Se ha eliminado la película'})
+

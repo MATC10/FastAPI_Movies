@@ -3,6 +3,8 @@ from config.database import engine, Base
 from middlewares.error_handler import ErrorHandler
 from routers.movie import router
 from routers.user import router_login
+
+
 app = FastAPI()
 app.title = 'FastAPI de Miguel Ángel'
 app.version = '0.0.1'
